@@ -19,19 +19,19 @@ public class CellTest {
 
     @Test
     public void emptyCellHasNoPawn() {
-        this.cell = new Cell();
+        this.cell = new Cell(1, 1);
         assertFalse(this.cell.hasPawn());
     }
 
     @Test
     public void filledCellHasPawn() {
-        this.cell = new Cell(this.pawn);
+        this.cell = new Cell(1, 1, this.pawn);
         assertTrue(this.cell.hasPawn());
     }
 
     @Test
     public void canGetPawnInCell() {
-        this.cell = new Cell(this.pawn);
+        this.cell = new Cell(1, 1, this.pawn);
         try {
             assertEquals(this.cell.getPawn(), this.pawn);
         } catch (CellEmptyException e) {
@@ -41,7 +41,7 @@ public class CellTest {
 
     @Test
     public void canSetPawnInCell() {
-        this.cell = new Cell();
+        this.cell = new Cell(1, 1);
         this.cell.setPawn(this.pawn);
         try {
             assertEquals(this.cell.getPawn(), this.pawn);
@@ -52,7 +52,7 @@ public class CellTest {
 
     @Test(expected = CellEmptyException.class)
     public void getEmptyCellThrowsException() throws CellEmptyException {
-        this.cell = new Cell();
+        this.cell = new Cell(1, 1);
         this.cell.getPawn();
     }
 }
