@@ -1,3 +1,6 @@
+package model;
+
+import model.Board;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,8 +14,4 @@ public class BoardTest {
         board = new Board();
     }
 
-    @Test
-    public void canGetEmptySquare() {
-        assertNull(board.getSquare(1,4));
-    }
 }

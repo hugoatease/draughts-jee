@@ -1,3 +1,6 @@
+package model;
+
+import model.Pawn;
 import org.junit.Before;
 import org.junit.Test;
 

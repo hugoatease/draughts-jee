@@ -1,3 +1,5 @@
+package model;
+
 public class Pawn {
     public enum PawnType {
         PAWN,
