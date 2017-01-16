@@ -14,6 +14,7 @@ public class BoardTest {
     @Before
     public void setUp() throws Exception {
         this.board = new Board();
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test(expected = BoardBoundsException.class)
@@ -100,5 +101,52 @@ public class BoardTest {
                 }
             }
         }
+    }
+
+    @Test
+    public void checkInitialTurnIsWhite() {
+        assertThat(this.board.getCurrentTurn(), Pawn.PawnColor.WHITE);
+    }
+
+    @Test
+    public void checkSecondTurnIsBlack() {
+        this.board.playTurn(2, 4, 3, 5);
+        assertThat(this.board.getCurrentTurn(), Pawn.PawnColor.BLACK);
+    }
+
+    @Test
+    public void checkThirdTurnIsWhite() {
+        this.board.playTurn(2, 4, 3, 5);
+        this.board.playTurn(3, 7, 2, 6);
+        assertThat(this.board.getCurrentTurn(), Pawn.PawnColor.WHITE);
+    }
+
+    @Test
+    public void checkWhitesCountIsCorrect() throws BoardBoundsException {
+        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.BLACK));
+        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.BLACK));
+        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
+
+        assertThat(this.board.pawnCount(Pawn.PawnColor.WHITE), 4);
+    }
+
+    @Test
+    public void checkBlacksCountIsCorrect() throws BoardBoundsException {
+        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.BLACK));
+        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.BLACK));
+        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
+
+        assertThat(this.board.pawnCount(Pawn.PawnColor.BLACK), 2);
+    }
+
+    @Test
+    public void isWhiteWinning() {
+
     }
 }
