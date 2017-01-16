@@ -7,17 +7,21 @@ public class Board {
     private int COLS = 10;
 
     public Board() {
-        this.board = new ArrayList<>(this.ROWS);
-        for (int i=0; i < this.COLS; i++) {
-            this.board.set(i, new ArrayList<>(this.COLS));
+        this.board = new ArrayList<>(ROWS);
+        for (int rowIndex=0; rowIndex < ROWS; rowIndex++) {
+            ArrayList<Pawn> row = new ArrayList<>(COLS);
+            for (int colIndex = 0; colIndex < COLS; colIndex++) {
+                row.add(null);
+            }
+            this.board.add(row);
         }
     }
 
-    private Pawn getSquare(int row, int col) {
+    public Pawn getSquare(int row, int col) {
         return this.board.get(row).get(col);
     }
 
-    private void setSquare(int row, int col, Pawn pawn) {
+    public void setSquare(int row, int col, Pawn pawn) {
         this.board.get(row).set(col, pawn);
     }
 }
