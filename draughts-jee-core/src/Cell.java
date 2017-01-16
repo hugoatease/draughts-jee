@@ -3,6 +3,10 @@ public class Cell {
 
     public Cell() {}
 
+    public Cell(Cell cell) {
+        setPawn(cell.getPawn());
+    }
+
     public Cell(Pawn pawn) {
         this.pawn = pawn;
     }
