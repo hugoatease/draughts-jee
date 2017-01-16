@@ -10,8 +10,6 @@ import static org.junit.Assert.*;
 
 public class BoardTest {
     private Board board;
-    private int rows;
-    private int cols;
 
     @Before
     public void setUp() throws Exception {
@@ -73,5 +71,34 @@ public class BoardTest {
         Pawn pawn = new Pawn(Pawn.PawnType.QUEEN, Pawn.PawnColor.BLACK);
         this.board.setPawn(5, 9, pawn);
         assertEquals(this.board.getPawn(5, 9), pawn);
+    }
+
+    @Test
+    public void isBoardCorrectlyInitialized() throws BoardBoundsException, CellEmptyException {
+        Pawn.PawnColor[][] pawns = {
+                {Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null},
+                {null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE},
+                {Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null},
+                {null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE, null, Pawn.PawnColor.WHITE},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null},
+                {null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK},
+                {Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null},
+                {null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK, null, Pawn.PawnColor.BLACK},
+        };
+
+        this.board.initialize();
+
+        for (int row=1; row <= 10; row++) {
+            for (int col=1; col <= 10; col++) {
+                if (pawns[row][col] == null) {
+                    assertFalse(this.board.hasPawn(row, col));
+                }
+                else {
+                    assertEquals(this.board.getPawn(row, col).getPawnColor(), pawns[row][col]);
+                }
+            }
+        }
     }
 }
