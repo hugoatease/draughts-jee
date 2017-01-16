@@ -11,7 +11,7 @@ public class Pawn {
         WHITE
     }
 
-    private PawnType pawnType = PawnType.PAWN;
+    private PawnType pawnType;
     private PawnColor pawnColor;
 
     public Pawn(PawnType pawnType, PawnColor pawnColor) {
@@ -20,7 +20,7 @@ public class Pawn {
     }
 
     public Pawn(PawnColor pawnColor) {
-        this.pawnColor = pawnColor;
+        this(PawnType.PAWN, pawnColor);
     }
 
     public Pawn(Pawn pawn) {
