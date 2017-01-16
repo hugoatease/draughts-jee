@@ -12,13 +12,6 @@ public class Pawn {
     private PawnType pawnType = PawnType.PAWN;
     private PawnColor pawnColor;
 
-    public Pawn() { }
-
-    public Pawn(Pawn pawn) {
-        setPawnType(pawn.getPawnType());
-        setPawnColor(pawn.getPawnColor());
-    }
-
     public Pawn(PawnType pawnType, PawnColor pawnColor) {
         this.pawnType = pawnType;
         this.pawnColor = pawnColor;
@@ -26,6 +19,11 @@ public class Pawn {
 
     public Pawn(PawnColor pawnColor) {
         this.pawnColor = pawnColor;
+    }
+
+    public Pawn(Pawn pawn) {
+        setPawnType(pawn.getPawnType());
+        setPawnColor(pawn.getPawnColor());
     }
 
     public PawnType getPawnType() {
