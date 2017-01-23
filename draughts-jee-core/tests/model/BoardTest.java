@@ -14,7 +14,6 @@ public class BoardTest {
     @Before
     public void setUp() throws Exception {
         this.board = new Board();
-        MockitoAnnotations.initMocks(this);
     }
 
     @Test(expected = BoardBoundsException.class)
@@ -93,17 +92,17 @@ public class BoardTest {
 
         for (int row=1; row <= 10; row++) {
             for (int col=1; col <= 10; col++) {
-                if (pawns[row][col] == null) {
+                if (pawns[row - 1][col - 1] == null) {
                     assertFalse(this.board.hasPawn(row, col));
                 }
                 else {
-                    assertEquals(this.board.getPawn(row, col).getPawnColor(), pawns[row][col]);
+                    assertEquals(this.board.getPawn(row, col).getPawnColor(), pawns[row - 1][col - 1]);
                 }
             }
         }
     }
 
-    @Test
+    /*@Test
     public void checkInitialTurnIsWhite() {
         assertThat(this.board.getCurrentTurn(), Pawn.PawnColor.WHITE);
     }
@@ -143,10 +142,5 @@ public class BoardTest {
         this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
 
         assertThat(this.board.pawnCount(Pawn.PawnColor.BLACK), 2);
-    }
-
-    @Test
-    public void isWhiteWinning() {
-
-    }
+    }*/
 }

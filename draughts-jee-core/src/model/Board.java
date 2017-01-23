@@ -21,6 +21,36 @@ public class Board {
             this.board.add(row);
         }
     }
+
+    private void initializeColor(int rowStart, int rowEnd, Pawn.PawnColor color) {
+        for (int rowIndex=rowStart; rowIndex <= rowEnd; rowIndex++) {
+            for (int colIndex=1; colIndex <= COLS; colIndex++) {
+                if (rowIndex % 2 == 1) {
+                    if (colIndex % 2 == 1) {
+                        try {
+                            setPawn(rowIndex, colIndex, new Pawn(Pawn.PawnType.PAWN, color));
+                        } catch (BoardBoundsException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } else {
+                    if (colIndex % 2 == 0) {
+                        try {
+                            setPawn(rowIndex, colIndex, new Pawn(Pawn.PawnType.PAWN, color));
+                        } catch (BoardBoundsException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void initialize() {
+        initializeColor(1, 4, Pawn.PawnColor.WHITE);
+        initializeColor(7, 10, Pawn.PawnColor.BLACK);
+    }
+
     private void checkBoundaries(int row, int col) throws BoardBoundsException {
         if (row <= 0 || col <= 0 || row > ROWS || col > COLS) {
             throw new BoardBoundsException();
