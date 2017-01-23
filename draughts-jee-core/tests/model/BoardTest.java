@@ -102,12 +102,12 @@ public class BoardTest {
         }
     }
 
-    /*@Test
+    @Test
     public void checkInitialTurnIsWhite() {
-        assertThat(this.board.getCurrentTurn(), Pawn.PawnColor.WHITE);
+        assertEquals(this.board.getCurrentTurn(), Pawn.PawnColor.WHITE);
     }
 
-    @Test
+    /*@Test
     public void checkSecondTurnIsBlack() {
         this.board.playTurn(2, 4, 3, 5);
         assertThat(this.board.getCurrentTurn(), Pawn.PawnColor.BLACK);

@@ -4,19 +4,23 @@ import exceptions.BoardBoundsException;
 import exceptions.CellEmptyException;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Board {
     private List<List<Cell>> board;
+    private List<Turn> turns;
     private int ROWS = 10;
     private int COLS = 10;
 
+
     public Board() {
         this.board = new ArrayList<>(ROWS);
+        this.turns = new LinkedList<>();
         for (int rowIndex=0; rowIndex < ROWS; rowIndex++) {
             ArrayList<Cell> row = new ArrayList<>(COLS);
             for (int colIndex = 0; colIndex < COLS; colIndex++) {
-                row.add(new Cell(rowIndex, colIndex));
+                row.add(new Cell(rowIndex + 1, colIndex + 1));
             }
             this.board.add(row);
         }
@@ -77,5 +81,13 @@ public class Board {
 
     public void setPawn(int row, int col, Pawn pawn) throws BoardBoundsException {
         getCell(row, col).setPawn(pawn);
+    }
+
+    public Pawn.PawnColor getCurrentTurn() {
+        if (this.turns.size() % 2 == 0) {
+            return Pawn.PawnColor.WHITE;
+        } else {
+            return Pawn.PawnColor.BLACK;
+        }
     }
 }
