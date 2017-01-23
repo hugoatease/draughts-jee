@@ -90,4 +90,8 @@ public class Board {
             return Pawn.PawnColor.BLACK;
         }
     }
+
+    public void playTurn(int srcRow, int srcCol, int dstRow, int dstCol) {
+        this.turns.add(new Turn(srcRow, srcCol, dstRow, dstCol));
+    }
 }
