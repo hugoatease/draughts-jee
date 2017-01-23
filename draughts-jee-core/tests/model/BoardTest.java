@@ -120,27 +120,27 @@ public class BoardTest {
         assertEquals(this.board.getCurrentTurn(), Pawn.PawnColor.WHITE);
     }
 
-    /*@Test
+    @Test
     public void checkWhitesCountIsCorrect() throws BoardBoundsException {
-        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
-        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.BLACK));
-        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
-        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
-        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.BLACK));
-        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(1, 2, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(1, 3, new Pawn(Pawn.PawnColor.BLACK));
+        this.board.setPawn(1, 4, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(1, 5, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(2, 1, new Pawn(Pawn.PawnColor.BLACK));
+        this.board.setPawn(2, 2, new Pawn(Pawn.PawnColor.WHITE));
 
-        assertThat(this.board.pawnCount(Pawn.PawnColor.WHITE), 4);
+        assertEquals(this.board.pawnCount(Pawn.PawnColor.WHITE), 4);
     }
 
     @Test
     public void checkBlacksCountIsCorrect() throws BoardBoundsException {
-        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
-        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.BLACK));
-        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
-        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
-        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.BLACK));
-        this.board.setPawn(1, 1, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(8, 1, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(8, 2, new Pawn(Pawn.PawnColor.BLACK));
+        this.board.setPawn(8, 3, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(8, 4, new Pawn(Pawn.PawnColor.WHITE));
+        this.board.setPawn(7, 2, new Pawn(Pawn.PawnColor.BLACK));
+        this.board.setPawn(7, 1, new Pawn(Pawn.PawnColor.WHITE));
 
-        assertThat(this.board.pawnCount(Pawn.PawnColor.BLACK), 2);
-    }*/
+        assertEquals(this.board.pawnCount(Pawn.PawnColor.BLACK), 2);
+    }
 }

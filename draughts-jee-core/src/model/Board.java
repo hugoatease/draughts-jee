@@ -94,4 +94,24 @@ public class Board {
     public void playTurn(int srcRow, int srcCol, int dstRow, int dstCol) {
         this.turns.add(new Turn(srcRow, srcCol, dstRow, dstCol));
     }
+
+    public int pawnCount(Pawn.PawnColor color) {
+        int result = 0;
+        for (int row=1; row <= ROWS; row++) {
+            for (int col=1; col <= COLS; col++) {
+                try {
+                    if (hasPawn(row, col)) {
+                        if (getPawn(row, col).getPawnColor() == color) {
+                            result++;
+                        }
+                    }
+                } catch (BoardBoundsException e) {
+                    e.printStackTrace();
+                } catch (CellEmptyException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
 }
