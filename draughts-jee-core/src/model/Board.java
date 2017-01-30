@@ -2,6 +2,7 @@ package model;
 
 import exceptions.BoardBoundsException;
 import exceptions.CellEmptyException;
+import exceptions.IllegalMoveException;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -91,8 +92,38 @@ public class Board {
         }
     }
 
-    public void playTurn(int srcRow, int srcCol, int dstRow, int dstCol) {
-        this.turns.add(new Turn(srcRow, srcCol, dstRow, dstCol));
+    public void playTurn(int srcRow, int srcCol, int dstRow, int dstCol) throws IllegalMoveException {
+        if (dstRow % 2 == 1) {
+            if (dstCol % 2 == 0) {
+                throw new IllegalMoveException();
+            }
+        } else {
+            if (dstCol % 2 == 1) {
+                throw new IllegalMoveException();
+            }
+        }
+
+        try {
+            Pawn pawn = getPawn(srcRow, srcCol);
+            if (pawn.getPawnColor() == Pawn.PawnColor.WHITE) {
+                if (dstRow <= srcRow && pawn.getPawnType() == Pawn.PawnType.PAWN) {
+                    throw new IllegalMoveException();
+                }
+            } else {
+                if (dstRow >= srcRow && pawn.getPawnType() == Pawn.PawnType.PAWN) {
+                    throw new IllegalMoveException();
+                }
+            }
+            if (hasPawn(dstRow, dstCol)) {
+                throw new IllegalMoveException();
+            }
+            this.turns.add(new Turn(srcRow, srcCol, dstRow, dstCol));
+            setPawn(dstRow, dstCol, pawn);
+        } catch (BoardBoundsException e) {
+            throw new IllegalMoveException();
+        } catch (CellEmptyException e) {
+            throw new IllegalMoveException();
+        }
     }
 
     public int pawnCount(Pawn.PawnColor color) {
