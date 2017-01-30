@@ -119,10 +119,27 @@ public class Board {
             }
             this.turns.add(new Turn(srcRow, srcCol, dstRow, dstCol));
             setPawn(dstRow, dstCol, pawn);
+            promoteToQueens();
         } catch (BoardBoundsException e) {
             throw new IllegalMoveException();
         } catch (CellEmptyException e) {
             throw new IllegalMoveException();
+        }
+    }
+
+    private void promoteToQueens() throws CellEmptyException, BoardBoundsException {
+        for (int col=1; col< COLS; col++) {
+            if (hasPawn(ROWS, col)) {
+                if (getPawn(ROWS, col).getPawnType() == Pawn.PawnType.PAWN) {
+                    getPawn(ROWS, col).setPawnType(Pawn.PawnType.QUEEN);
+                }
+            }
+
+            if (hasPawn(1, col)) {
+                if (getPawn(1, col).getPawnType() == Pawn.PawnType.PAWN) {
+                    getPawn(1, col).setPawnType(Pawn.PawnType.QUEEN);
+                }
+            }
         }
     }
 

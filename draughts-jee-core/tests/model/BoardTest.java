@@ -191,4 +191,18 @@ public class BoardTest {
         this.board.setPawn(5, 3, new Pawn(Pawn.PawnType.PAWN, Pawn.PawnColor.BLACK));
         this.board.playTurn(4, 2, 5, 3);
     }
+
+    @Test
+    public void whitePawnQueenPromotion() throws BoardBoundsException, IllegalMoveException, CellEmptyException {
+        this.board.setPawn(9, 3, new Pawn(Pawn.PawnType.PAWN, Pawn.PawnColor.WHITE));
+        this.board.playTurn(9, 3, 10, 2);
+        assertEquals(this.board.getPawn(10, 2).getPawnType(), Pawn.PawnType.QUEEN);
+    }
+
+    @Test
+    public void blackPawnQueenPromotion() throws BoardBoundsException, IllegalMoveException, CellEmptyException {
+        this.board.setPawn(2, 4, new Pawn(Pawn.PawnType.PAWN, Pawn.PawnColor.BLACK));
+        this.board.playTurn(2, 4, 1, 3);
+        assertEquals(this.board.getPawn(1, 3).getPawnType(), Pawn.PawnType.QUEEN);
+    }
 }
