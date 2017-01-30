@@ -2,6 +2,7 @@ package model;
 
 import exceptions.BoardBoundsException;
 import exceptions.CellEmptyException;
+import exceptions.IllegalMoveException;
 import model.Board;
 import org.junit.Before;
 import org.junit.Test;
@@ -104,19 +105,22 @@ public class BoardTest {
 
     @Test
     public void checkInitialTurnIsWhite() {
+        this.board.initialize();
         assertEquals(this.board.getCurrentTurn(), Pawn.PawnColor.WHITE);
     }
 
     @Test
-    public void checkSecondTurnIsBlack() {
-        this.board.playTurn(2, 4, 3, 5);
+    public void checkSecondTurnIsBlack() throws IllegalMoveException {
+        this.board.initialize();
+        this.board.playTurn(4, 2, 5, 3);
         assertEquals(this.board.getCurrentTurn(), Pawn.PawnColor.BLACK);
     }
 
     @Test
-    public void checkThirdTurnIsWhite() {
-        this.board.playTurn(2, 4, 3, 5);
-        this.board.playTurn(3, 7, 2, 6);
+    public void checkThirdTurnIsWhite() throws IllegalMoveException {
+        this.board.initialize();
+        this.board.playTurn(4, 2, 5, 3);
+        this.board.playTurn(7, 3, 6, 2);
         assertEquals(this.board.getCurrentTurn(), Pawn.PawnColor.WHITE);
     }
 
@@ -142,5 +146,49 @@ public class BoardTest {
         this.board.setPawn(7, 1, new Pawn(Pawn.PawnColor.WHITE));
 
         assertEquals(this.board.pawnCount(Pawn.PawnColor.BLACK), 2);
+    }
+
+    @Test
+    public void whitePawnCanMoveLegally() throws CellEmptyException, BoardBoundsException, IllegalMoveException {
+        this.board.initialize();
+        this.board.getPawn(4, 2);
+        this.board.playTurn(4, 2, 5, 3);
+        assertEquals(this.board.getPawn(5, 3).getPawnColor(), Pawn.PawnColor.WHITE);
+        assertEquals(this.board.getPawn(5, 3).getPawnType(), Pawn.PawnType.PAWN);
+
+        this.board.playTurn(5, 3, 6, 2);
+        assertEquals(this.board.getPawn(6, 2).getPawnColor(), Pawn.PawnColor.WHITE);
+        assertEquals(this.board.getPawn(6, 2).getPawnType(), Pawn.PawnType.PAWN);
+    }
+
+    @Test(expected = IllegalMoveException.class)
+    public void whitePawnCannotGoBackwards() throws BoardBoundsException, IllegalMoveException {
+        this.board.setPawn(4, 2, new Pawn(Pawn.PawnType.PAWN, Pawn.PawnColor.WHITE));
+        this.board.playTurn(4, 2, 3, 3);
+    }
+
+    @Test(expected = IllegalMoveException.class)
+    public void whitePawnCannotMoveUp() throws BoardBoundsException, IllegalMoveException {
+        this.board.setPawn(4, 2, new Pawn(Pawn.PawnType.PAWN, Pawn.PawnColor.WHITE));
+        this.board.playTurn(4, 2, 4, 3);
+    }
+
+    @Test(expected = IllegalMoveException.class)
+    public void whitePawnCannotMoveLeft() throws BoardBoundsException, IllegalMoveException {
+        this.board.setPawn(4, 2, new Pawn(Pawn.PawnType.PAWN, Pawn.PawnColor.WHITE));
+        this.board.playTurn(4, 2, 3, 2);
+    }
+
+    @Test(expected = IllegalMoveException.class)
+    public void whitePawnCannotMoveRight() throws BoardBoundsException, IllegalMoveException {
+        this.board.setPawn(4, 2, new Pawn(Pawn.PawnType.PAWN, Pawn.PawnColor.WHITE));
+        this.board.playTurn(4, 2, 5, 2);
+    }
+
+    @Test(expected = IllegalMoveException.class)
+    public void whitePawnCannotSuperposeBlackPawn() throws BoardBoundsException, IllegalMoveException {
+        this.board.setPawn(4, 2, new Pawn(Pawn.PawnType.PAWN, Pawn.PawnColor.WHITE));
+        this.board.setPawn(5, 3, new Pawn(Pawn.PawnType.PAWN, Pawn.PawnColor.BLACK));
+        this.board.playTurn(4, 2, 5, 3);
     }
 }
