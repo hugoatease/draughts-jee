@@ -205,4 +205,15 @@ public class BoardTest {
         this.board.playTurn(2, 4, 1, 3);
         assertEquals(this.board.getPawn(1, 3).getPawnType(), Pawn.PawnType.QUEEN);
     }
+
+    @Test
+    public void whiteQueenCanGoBackwards() throws BoardBoundsException, IllegalMoveException, CellEmptyException {
+        this.board.setPawn(10, 2, new Pawn(Pawn.PawnType.QUEEN, Pawn.PawnColor.WHITE));
+        this.board.playTurn(10, 2, 9, 3);
+        assertEquals(this.board.getPawn(9, 3).getPawnType(), Pawn.PawnType.QUEEN);
+        assertEquals(this.board.getPawn(9, 3).getPawnColor(), Pawn.PawnColor.WHITE);
+        this.board.playTurn(9, 3, 7, 5);
+        assertEquals(this.board.getPawn(7, 5).getPawnColor(), Pawn.PawnColor.WHITE);
+        assertEquals(this.board.getPawn(7, 5).getPawnType(), Pawn.PawnType.QUEEN);
+    }
 }
