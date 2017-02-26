@@ -19,9 +19,7 @@
 
   <modules>
     <module>draughts-jee-core</module>
-    <!-- module>jee-bootstrap-jpa</module>
-    <module>jee-bootstrap-web</module>
-    <module>jee-bootstrap-rest</module -->
+    <module>draughts-jee-jpa</module>
   </modules>
 
 
@@ -208,17 +206,6 @@
         <artifactId>draughts-jee-core</artifactId>
         <version>${project.version}</version>
       </dependency>
-      <!-- dependency>
-        <groupId>org.dmetzler.isen.jee-bootstrap</groupId>
-        <artifactId>jee-bootstrap-jpa</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.dmetzler.isen.jee-bootstrap</groupId>
-        <artifactId>jee-bootstrap-rest</artifactId>
-        <version>${project.version}</version>
-      </dependency-->
     </dependencies>
   </dependencyManagement>
 
