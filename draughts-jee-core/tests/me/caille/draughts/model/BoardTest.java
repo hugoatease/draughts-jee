@@ -1,9 +1,8 @@
-package model;
+package me.caille.draughts.model;
 
 import exceptions.BoardBoundsException;
 import exceptions.CellEmptyException;
 import exceptions.IllegalMoveException;
-import model.Board;
 import org.junit.Before;
 import org.junit.Test;
 

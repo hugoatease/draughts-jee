@@ -1,4 +1,4 @@
-package model;
+package me.caille.draughts.model;
 
 public class Pawn {
     public enum PawnType {

@@ -1,8 +1,6 @@
-package model;
+package me.caille.draughts.model;
 
 import exceptions.CellEmptyException;
-import model.Cell;
-import model.Pawn;
 import org.junit.Before;
 import org.junit.Test;
 
