@@ -2,8 +2,8 @@ package me.caille.draughts.entities;
 
 import javax.persistence.*;
 
-@Entity
-public class Game {
+@Entity(name = "game")
+public class GameEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
@@ -15,25 +15,25 @@ public class Game {
 
     @Column(name="white_player")
     @OneToOne
-    private Player whitePlayer;
+    private PlayerEntity whitePlayer;
 
-    public Player getWhitePlayer() {
+    public PlayerEntity getWhitePlayer() {
         return whitePlayer;
     }
 
-    public void setWhitePlayer(Player whitePlayer) {
+    public void setWhitePlayer(PlayerEntity whitePlayer) {
         this.whitePlayer = whitePlayer;
     }
 
     @Column(name="black_player")
     @OneToOne
-    private Player blackPlayer;
+    private PlayerEntity blackPlayer;
 
-    public Player getBlackPlayer() {
+    public PlayerEntity getBlackPlayer() {
         return blackPlayer;
     }
 
-    public void setBlackPlayer(Player blackPlayer) {
+    public void setBlackPlayer(PlayerEntity blackPlayer) {
         this.blackPlayer = blackPlayer;
     }
 }

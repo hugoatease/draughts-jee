@@ -37,5 +37,9 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.hugoatease</groupId>
+            <artifactId>draughts-jee-core</artifactId>
+        </dependency>
     </dependencies>
 </project>
