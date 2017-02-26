@@ -1,6 +1,6 @@
 package me.caille.draughts.model;
 
-import exceptions.CellEmptyException;
+import me.caille.draughts.exceptions.CellEmptyException;
 
 public class Cell {
     private Pawn pawn;
