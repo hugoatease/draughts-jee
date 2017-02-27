@@ -4,7 +4,7 @@ import me.caille.draughts.model.Turn;
 
 import javax.persistence.*;
 
-@Entity(name = "turn")
+@Entity(name = "turns")
 public class TurnEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

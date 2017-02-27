@@ -2,7 +2,7 @@ package me.caille.draughts.entities;
 
 import javax.persistence.*;
 
-@Entity(name = "player")
+@Entity(name = "players")
 public class PlayerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
