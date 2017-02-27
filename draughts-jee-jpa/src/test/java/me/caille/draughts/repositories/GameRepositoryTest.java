@@ -13,7 +13,13 @@ public class GameRepositoryTest {
 
     @org.junit.Before
     public void setUp() throws Exception {
+        ejbContainer = EJBContainer.createEJBContainer();
         repository = new GameRepository();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        ejbContainer.close();
     }
 
     @Test

@@ -6,14 +6,10 @@ import javax.ejb.Stateful;
 import javax.persistence.*;
 import java.util.List;
 
+@Stateful
 public class GameRepository {
-    private EntityManagerFactory emf;
+    @PersistenceContext(name = "db-manager", type = PersistenceContextType.EXTENDED)
     private EntityManager em;
-
-    public GameRepository() {
-        emf = Persistence.createEntityManagerFactory("db-manager");
-        em = emf.createEntityManager();
-    }
 
     public List<GameEntity> getAll() {
         Query query = em.createQuery("SELECT x FROM games x");
@@ -26,11 +22,8 @@ public class GameRepository {
     }
 
     public GameEntity createGame() {
-        EntityTransaction t = em.getTransaction();
-        t.begin();
         GameEntity game = new GameEntity();
         em.persist(game);
-        t.commit();
         return game;
     }
 }
