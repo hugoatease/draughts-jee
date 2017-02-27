@@ -1,6 +1,9 @@
 package me.caille.draughts.entities;
 
+import me.caille.draughts.model.Turn;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "games")
 public class GameEntity {
@@ -35,5 +38,12 @@ public class GameEntity {
 
     public void setBlackPlayer(PlayerEntity blackPlayer) {
         this.blackPlayer = blackPlayer;
+    }
+
+    @OneToMany(mappedBy = "game", targetEntity = TurnEntity.class)
+    private List<TurnEntity> turns;
+
+    public List<TurnEntity> getTurns() {
+        return turns;
     }
 }

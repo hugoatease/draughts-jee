@@ -1,6 +1,7 @@
 package me.caille.draughts.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "players")
 public class PlayerEntity {
@@ -24,8 +25,21 @@ public class PlayerEntity {
         this.nickname = nickname;
     }
 
+    @OneToMany(mappedBy = "player", targetEntity = TurnEntity.class)
+    private List<TurnEntity> turns;
+
+    @OneToMany(mappedBy = "whitePlayer", targetEntity = GameEntity.class)
+    private List<GameEntity> gamesInWhite;
+
+    @OneToMany(mappedBy = "blackPlayer", targetEntity = GameEntity.class)
+    private List<GameEntity> gamesInBlack;
+
     @Override
     public String toString() {
         return "User " + getId() + ": " + getNickname();
+    }
+
+    public List<TurnEntity> getTurns() {
+        return turns;
     }
 }
