@@ -1,6 +1,7 @@
 package me.caille.draughts.repositories;
 
 import me.caille.draughts.entities.GameEntity;
+import me.caille.draughts.entities.PlayerEntity;
 
 import javax.ejb.Stateful;
 import javax.persistence.*;
@@ -23,6 +24,20 @@ public class GameRepository {
 
     public GameEntity createGame() {
         GameEntity game = new GameEntity();
+        em.persist(game);
+        return game;
+    }
+
+    public GameEntity joinWhitePlayer(int id, PlayerEntity player) {
+        GameEntity game = getById(id);
+        game.setWhitePlayer(player);
+        em.persist(game);
+        return game;
+    }
+
+    public GameEntity joinBlackPlayer(int id, PlayerEntity player) {
+        GameEntity game = getById(id);
+        game.setBlackPlayer(player);
         em.persist(game);
         return game;
     }
