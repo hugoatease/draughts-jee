@@ -14,7 +14,7 @@ public class GameRepositoryTest {
     @org.junit.Before
     public void setUp() throws Exception {
         ejbContainer = EJBContainer.createEJBContainer();
-        repository = new GameRepository();
+        repository = (GameRepository) ejbContainer.getContext().lookup("java:global/draughts-jee-jpa/GameRepository");
     }
 
     @After
