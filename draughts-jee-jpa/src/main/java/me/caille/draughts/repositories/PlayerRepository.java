@@ -1,6 +1,8 @@
 package me.caille.draughts.repositories;
 
 import me.caille.draughts.entities.PlayerEntity;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -22,6 +24,13 @@ public class PlayerRepository {
 
     public PlayerEntity getById(int id) {
         return em.find(PlayerEntity.class, id);
+    }
+
+    public PlayerEntity getByNickname(String nickname) {
+        Query query = em.createQuery("SELECT x FROm players x WHERE x.nickname = :nickname");
+        query.setParameter("nickname", nickname);
+        PlayerEntity result = (PlayerEntity) query.getSingleResult();
+        return result;
     }
 
     public PlayerEntity create(String nickname) {

@@ -42,4 +42,10 @@ public class PlayerRepositoryTest {
         PlayerEntity retrieved = repository.getById(player.getId());
         assertEquals(player, retrieved);
     }
+
+    @Test
+    public void canRetrievePlayerByNickname() {
+        PlayerEntity retrieved = repository.getByNickname(player.getNickname());
+        assertEquals(player, retrieved);
+    }
 }
