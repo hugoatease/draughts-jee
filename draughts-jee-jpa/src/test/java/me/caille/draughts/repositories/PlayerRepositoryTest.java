@@ -1,6 +1,7 @@
 package me.caille.draughts.repositories;
 
 import me.caille.draughts.entities.PlayerEntity;
+import org.ajbrown.namemachine.NameGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,12 +14,14 @@ public class PlayerRepositoryTest {
     private EJBContainer ejbContainer;
     private PlayerRepository repository;
     private PlayerEntity player;
+    private NameGenerator nameGenerator;
 
     @Before
     public void setUp() throws Exception {
         ejbContainer = EJBContainer.createEJBContainer();
         repository = (PlayerRepository) ejbContainer.getContext().lookup("java:global/draughts-jee-jpa/PlayerRepository");
-        player = repository.create("hugoatease");
+        nameGenerator = new NameGenerator();
+        player = repository.create(nameGenerator.generateName().toString());
     }
 
     @After
@@ -28,9 +31,10 @@ public class PlayerRepositoryTest {
 
     @Test
     public void canCreatePlayer() {
-        PlayerEntity created = repository.create("hugoatease");
+        String name = nameGenerator.generateName().toString();
+        PlayerEntity created = repository.create(name);
         assertNotNull(created);
-        assertEquals("hugoatease", created.getNickname());
+        assertEquals(name, created.getNickname());
     }
 
     @Test

@@ -11,6 +11,13 @@
 
     <artifactId>draughts-jee-jpa</artifactId>
 
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+
 
     <dependencies>
         <dependency>
@@ -67,6 +74,11 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ajbrown</groupId>
+            <artifactId>NameMachine</artifactId>
+            <version>0.2.0</version>
         </dependency>
     </dependencies>
 </project>
