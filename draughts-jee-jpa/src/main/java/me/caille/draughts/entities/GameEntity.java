@@ -13,8 +13,8 @@ public class GameEntity {
         return id;
     }
 
-    @Column(name="white_player")
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "white_id")
     private PlayerEntity whitePlayer;
 
     public PlayerEntity getWhitePlayer() {
@@ -25,8 +25,8 @@ public class GameEntity {
         this.whitePlayer = whitePlayer;
     }
 
-    @Column(name="black_player")
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "black_id")
     private PlayerEntity blackPlayer;
 
     public PlayerEntity getBlackPlayer() {

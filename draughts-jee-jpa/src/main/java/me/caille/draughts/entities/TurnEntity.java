@@ -15,17 +15,13 @@ public class TurnEntity {
         return id;
     }
 
-    @Column(name = "player")
-    @OneToOne
-    private PlayerEntity entity;
+    @ManyToOne
+    @JoinColumn(name = "player_id")
+    private PlayerEntity player;
 
-    public PlayerEntity getEntity() {
-        return entity;
-    }
-
-    public void setEntity(PlayerEntity entity) {
-        this.entity = entity;
-    }
+    @ManyToOne
+    @JoinColumn(name = "game_id")
+    private GameEntity game;
 
     @Embedded
     private Turn turn;
@@ -36,5 +32,21 @@ public class TurnEntity {
 
     public void setTurn(Turn turn) {
         this.turn = turn;
+    }
+
+    public PlayerEntity getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(PlayerEntity player) {
+        this.player = player;
+    }
+
+    public GameEntity getGame() {
+        return game;
+    }
+
+    public void setGame(GameEntity game) {
+        this.game = game;
     }
 }

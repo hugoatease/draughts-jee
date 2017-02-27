@@ -16,6 +16,10 @@ public class Turn {
     @Column(name = "dst_col")
     private int dstCol;
 
+    public Turn() {
+
+    }
+
     public Turn(int srcRow, int srcCol, int dstRow, int dstCol) {
         this.srcRow = srcRow;
         this.srcCol = srcCol;
