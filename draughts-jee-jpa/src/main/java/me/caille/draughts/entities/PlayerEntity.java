@@ -14,7 +14,7 @@ public class PlayerEntity {
         return id;
     }
 
-    @Column(name="nickname", length=30)
+    @Column(name="nickname", length=30, unique = true)
     private String nickname;
 
     public String getNickname() {
