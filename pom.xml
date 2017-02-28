@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
 
-  <groupId>com.github.hugoatease</groupId>
+  <groupId>me.caille.draughts</groupId>
   <artifactId>draughts-jee</artifactId>
   <version>0.1</version>
   <name>ISEN Draughts project</name>
@@ -58,8 +58,13 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.github.hugoatease</groupId>
+        <groupId>me.caille.draughts</groupId>
         <artifactId>draughts-jee-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>me.caille.draughts</groupId>
+        <artifactId>draughts-jee-jpa</artifactId>
         <version>${project.version}</version>
       </dependency>
     </dependencies>
